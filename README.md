@@ -19,4 +19,5 @@ Material-ui: https://material-ui.com/
 Screenshot for Daily Prioritizer:
 --------------------------------
 
-<img src="MigraineTrackerScreenShot.PNG">
+<img src="MigraineTrackerScreenShot.png">
+
