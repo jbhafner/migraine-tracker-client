@@ -46,6 +46,8 @@ const Main = props => {
     myHeadaches
   } = props;
 
+  console.log("props", props);
+
   return (
     <Paper style={paperStyle}>
       <div>
@@ -54,8 +56,8 @@ const Main = props => {
             exact
             path="/"
             render={() =>
-              this.props.currentUser.isAuthenticated ? (
-                <Redirect to="/myHeadaches" />
+              props.currentUser.isAuthenticated ? (
+                <Redirect to="/myHeadaches/list" />
               ) : (
                 <Home />
               )

@@ -43,6 +43,11 @@ class DataView extends Component {
     this.props.removeHeadache(id);
   }
 
+  updateMyHeadache(id) {
+    console.log("updateMyHeadache called");
+    this.props.updateMyHeadache(id);
+  }
+
   async updateHeadaches(user_id) {
     console.log("updateHeadaches called");
     let headacheArray = await [];
@@ -124,6 +129,6 @@ function mapStateToProps(state) {
 export default withRouter(
   connect(
     mapStateToProps,
-    { authUser, fetchHeadaches, removeHeadache }
+    { authUser, fetchHeadaches, removeHeadache, updateMyHeadache }
   )(DataView)
 );

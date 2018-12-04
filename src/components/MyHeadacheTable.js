@@ -25,7 +25,7 @@ const styles = theme => ({
 
 console.log("this.props", this.props);
 const MyHeadacheTable = props => {
-  const { id, classes, myHeadaches, removeHeadache } = props;
+  const { id, classes, myHeadaches, removeHeadache, updateMyHeadache } = props;
 
   console.log("props", props);
 
@@ -51,7 +51,7 @@ const MyHeadacheTable = props => {
                 <TableCell numeric>
                   <span>
                     <button
-                      onClick={removeHeadache.bind(this, n.user._id, n._id)}
+                      onClick={updateMyHeadache.bind(this, n.user._id, n._id)}
                     >
                       edit
                     </button>
@@ -78,62 +78,6 @@ const MyHeadacheTable = props => {
 MyHeadacheTable.propTypes = {
   classes: PropTypes.object.isRequired
 };
-
-// function mapStateToProps(state) {
-//   return {
-//     myHeadaches: state.headaches.myHeadaches,
-//     id: state.currentUser.user.id
-//   };
-// }
-
-// AS CLASS-BASED COMPONENT
-// class MyHeadacheTable extends Component {
-//   constructor(props) {
-//     super(props);
-//     console.log("props", props);
-//     const { id, classes, myHeadaches } = props;
-//   }
-
-//   render() {
-//     return (
-//       <Paper className={classes.root}>
-//         <Table className={classes.table}>
-//           <TableHead>
-//             <TableRow>
-//               <TableCell>Date</TableCell>
-//               <TableCell numeric>Pain Level</TableCell>
-//               <TableCell numeric>Comment</TableCell>
-//             </TableRow>
-//           </TableHead>
-//           <TableBody>
-//             {myHeadaches.map(n => {
-//               return (
-//                 <TableRow key={n._id}>
-//                   <TableCell numeric>{n.date}</TableCell>
-//                   <TableCell numeric>{n.painLevel}</TableCell>
-//                   <TableCell numeric>{n.comment}</TableCell>
-//                   <TableCell numeric>
-//                     <span>
-//                       <button
-//                         onClick={this.props.removeHeadache.bind(
-//                           this,
-//                           n.user._id,
-//                           n._id
-//                         )}
-//                       >
-//                         X
-//                       </button>
-//                     </span>
-//                   </TableCell>
-//                 </TableRow>
-//               );
-//             })}
-//           </TableBody>
-//         </Table>
-//       </Paper>
-//     );
-//   }
-// }
 
 export default withStyles(styles)(MyHeadacheTable);
 // export default compose(withStyles(styles))(MyHeadacheTable);
