@@ -16,7 +16,7 @@ On the client side, I use React with the Material-ui design library.
 
 Material-ui: https://material-ui.com/
 
-Screenshot for Daily Prioritizer:
+Screenshot for Migraine Tracker:
 --------------------------------
 
 <img src="MigraineTrackerScreenShot.png">
