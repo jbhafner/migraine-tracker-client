@@ -81,9 +81,9 @@ const pain = [
   }
 ];
 
-pain.map(function(item) {
-  console.log("pain item", item);
-});
+// pain.map(function(item) {
+//   console.log("pain item", item);
+// });
 
 // let date = {};
 class NewHeadacheForm extends Component<{}, NewHeadacheForm> {

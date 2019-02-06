@@ -32,7 +32,8 @@ class DataView extends Component {
 
   componentDidMount() {
     let id = this.props.id;
-    console.log("id", id);
+    let editIndex = this.props.editIndex;
+    console.log("id", id, "editIndex", editIndex);
     console.log("this.props.fetchHeadaches", this.props.fetchHeadaches);
     // this.props.fetchHeadaches(id);
     this.props.fetchHeadaches(id);
@@ -97,6 +98,7 @@ class DataView extends Component {
                 <MyHeadacheList
                   id={this.props.id}
                   {...props}
+                  editIndex={this.props.editIndex}
                   key={this.props.myHeadaches._id}
                   myHeadaches={this.props.myHeadaches}
                   fetchHeadaches={this.props.fetchHeadaches}
@@ -122,7 +124,8 @@ class DataView extends Component {
 function mapStateToProps(state) {
   return {
     myHeadaches: state.headaches.myHeadaches,
-    id: state.currentUser.user.id
+    id: state.currentUser.user.id,
+    editIndex: state.headaches.editIndex
   };
 }
 

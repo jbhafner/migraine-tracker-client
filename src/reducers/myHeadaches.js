@@ -15,13 +15,18 @@ const initialState = {
       painLevel: 7,
       comment: "Ouch!"
     }
-  ]
+  ],
+  editIndex: -1
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_MY_HEADACHES:
-      return { ...state, myHeadaches: action.myHeadaches };
+      return {
+        ...state,
+        myHeadaches: action.myHeadaches,
+        editIndex: action.editIndex
+      };
     case ADD_HEADACHE:
       return {
         ...state,

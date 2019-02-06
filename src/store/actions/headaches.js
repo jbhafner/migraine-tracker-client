@@ -53,6 +53,7 @@ export const updateMyHeadache = (user_id, headache_id) => {
   console.log("put", `/api/users/${user_id}/headaches/${headache_id}`);
   return dispatch => {
     console.log("apiCall", apiCall);
+
     return apiCall("put", `/api/users/${user_id}/headaches/${headache_id}`)
       .then(() => dispatch(updateHeadache(headache_id)))
       .catch(err => {

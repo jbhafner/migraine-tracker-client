@@ -9,14 +9,11 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import TableHead from '@material-ui/core/TableHead';
-import TableRowColumn from "@material-ui/core/TableRowColumn";
 import Paper from "@material-ui/core/Paper";
 import MyHeadacheNewForm from "./MyHeadacheNewForm";
 import HeadacheUpdateForm from "./MyHeadacheUpdateForm";
 // import EditIcon from "material-ui/svg-icons/image/edit";
 // import TrashIcon from "material-ui/svg-icons/actions/delete";
-import CheckIcon from "material-ui/svg-icons/navigation/check";
 
 const styles = theme => ({
   root: {
@@ -34,47 +31,11 @@ const MyHeadacheTable = props => {
   const { id, classes, myHeadaches, removeHeadache, updateMyHeadache } = props;
 
   console.log("props", props);
-  console.log("currentlyEditing", currentlyEditing)
 
-  const row = (x,i,header, removeHeadache, startEditing, editIndex, handleChange) => {
-    const currentlyEditing = editIndex === n;
-     return (
-       <React.Fragment>
-         <TableHead>
-          <TableRow key={n._id}> 
-              {myHeadaches.map((n,k) => ( 
-                <TableCell key={n._id}>
-                    {currentlyEditing ? (
-                      <TextField numeric name={n.prop} onChange={handleChange} value={x[n.prop]}></TextField>          
-                  ) : (
-                      test 
-                  )}
-                </TableCell>
-                <TableCell>
-                  <span>
-                      currentlyEditing ? 
-                      <CheckIcon onClick={()=> stopEditing()}/> :
-                    <button
-                      onClick={startEditing}
-                    >
-                      edit
-                    </button>
-                  </span>
-              </TableCell>
-              <TableCell numeric>
-                <span>
-                  <button
-                    onClick={removeHeadache.bind(this, n.user._id, n._id)}
-                  >
-                    X
-                  </button>
-                </span>
-              </TableCell>
-              )
-          </TableRow>
-       </TableHead>
-       </React.Fragment>
-  }
+  // function showEditForm = () =>{
+  //   return <HeadacheUpdateForm />;
+  // }
+
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -88,7 +49,31 @@ const MyHeadacheTable = props => {
           </TableRow>
         </TableHead>
         <TableBody>
-
+          {myHeadaches.map(n => {
+            return (
+              <TableRow key={n._id}>
+                <TableCell numeric>{n.date}</TableCell>
+                <TableCell numeric>{n.painLevel}</TableCell>
+                <TableCell numeric>{n.comment}</TableCell>
+                <TableCell numeric>
+                  <span>
+                    <button
+                      onClick={updateMyHeadache.bind(this, n.user._id, n._id)}
+                    >
+                      edit
+                    </button>
+                  </span>
+                </TableCell>
+                <TableCell numeric>
+                  <span>
+                    <button
+                      onClick={removeHeadache.bind(this, n.user._id, n._id)}
+                    >
+                      X
+                    </button>
+                  </span>
+                </TableCell>
+              </TableRow>
             );
           })}
         </TableBody>

@@ -9,10 +9,6 @@ import {
 import { getAllHeadaches } from "../store/actionCreators.js";
 
 class MyHeadacheList extends Component {
-  state = {
-    data: [],
-    editIndex: -1
-  };
   constructor(props) {
     super(props);
     let self = this;
@@ -46,23 +42,6 @@ class MyHeadacheList extends Component {
     this.props.removeHeadache(user_id, headache_id);
   }
 
-  startEditing = i => {
-    this.setState({ editIndex: i });
-  };
-
-  stopEditing = () => {
-    this.setState({ editIndex: -1 });
-  };
-
-  handleChange = (e, name, i) => {
-    const { value } = e.target;
-    this.setState(state => ({
-      data: state.data.map((row, j) =>
-        j === i ? { ...row, [name]: value } : row
-      )
-    }));
-  };
-
   render() {
     console.log(
       "MyHeadacheList.js/render - this.props.myHeadaches",
@@ -73,23 +52,14 @@ class MyHeadacheList extends Component {
     // const {headaches} = this.props;
     console.log("this.props.myHeadaches", this.props.myHeadaches);
     let myHeadacheTable = (
-      i,
-      startEditing,
-      editIndex,
-      handleChange,
-      stopEditing
-    ) => {
       <MyHeadacheTable
-        startEditing={this.startEditing}
-        handleChange={this.handleChange}
-        stopEditing={this.stopEditing}
-        editIndex={this.state.editIndex}
+        editIndex={-1}
         myHeadaches={this.props.myHeadaches}
         updateMyHeadache={this.props.updateMyHeadche}
         removeHeadache={this.props.removeHeadache}
         {...this.props}
-      />;
-    };
+      />
+    );
 
     console.log(
       "myHeadacheTable",
