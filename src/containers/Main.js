@@ -1,32 +1,15 @@
 import React from "react";
-// import { Route, Redirect } from "react-router";
-import PropTypes from "prop-types";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { authUser } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
 
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import reduxPromise from "redux-promise";
-import reducers from "../reducers/rootReducer";
-import { compose } from "redux";
-
-import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import { Backdrop } from "@material-ui/core";
 import Home from "../components/Home";
 import Test from "../components/Test";
 import DataView from "../components/DataView";
 import AuthForm from "../components/AuthForm";
-const styles = theme => ({
-  root: {
-    ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2
-  }
-});
+import About from "../components/About";
 
 const paperStyle = {
   height: "85%",
@@ -37,14 +20,7 @@ const paperStyle = {
 };
 
 const Main = props => {
-  const {
-    classes,
-    authUser,
-    errors,
-    removeError,
-    currentUser,
-    myHeadaches
-  } = props;
+  const { authUser, errors, removeError } = props;
 
   console.log("props", props);
 
@@ -65,6 +41,8 @@ const Main = props => {
           />
           <Route path="/myHeadaches" render={props => <DataView />} />
           <Route exact path="/test" render={props => <Test />} />
+          <Route exact path="/about" render={props => <About />} />
+
           <Route
             exact
             path="/signin"
@@ -107,10 +85,6 @@ function mapStateToProps(state) {
     content: state.content
   };
 }
-
-// Main.propTypes = {
-//   classes: PropTypes.object.isRequired
-// };
 
 export default withRouter(
   connect(

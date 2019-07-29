@@ -1,20 +1,14 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Switch, Route } from "react-router-dom";
 // import AppBar from "material-ui/AppBar";
 import Button from "@material-ui/core/Button";
-import Login from "./Login";
 import { connect } from "react-redux";
-import { logout } from "../store/actions/auth";
+import { logout, authUser } from "../store/actions/auth";
 import "./NAVBar.css";
 import Toolbar from "@material-ui/core/Toolbar";
 import AppBar from "@material-ui/core/AppBar";
 import { Typography } from "@material-ui/core";
-// const styles = theme => ({
-//   button: {
-//     margin: theme.spacing.unit,
-//     margin: "5px"
-//   }
-// });
+import Home from "./Home";
 
 const style = {
   margin: "5px",
@@ -41,18 +35,18 @@ class NAVBar extends Component {
       <div className="App">
         <AppBar style={{ position: "fixed", top: 0 }} title="Migraine Tracker">
           <Toolbar>
-            <Typography variant="title" color="inherit">
+            <Typography variant="h6" color="inherit">
               Migraine Tracker
             </Typography>
             {this.props.currentUser.isAuthenticated ? (
               <div className="buttons">
                 <p>User: {this.props.currentUser.user.username}</p>
                 <Button
-                  onClick={this.logout}
                   component={Link}
-                  to="/signin"
+                  to="/home"
                   variant="outlined"
                   style={style}
+                  onClick={this.logout}
                 >
                   Logout
                 </Button>
@@ -79,6 +73,15 @@ class NAVBar extends Component {
             )}
           </Toolbar>
         </AppBar>
+        <Switch>
+          <Route
+            exact
+            path="/home"
+            render={props => (
+              <Home onAuth={authUser} history={this.props.history} />
+            )}
+          />
+        </Switch>
       </div>
     );
   }

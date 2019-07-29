@@ -21,20 +21,6 @@ function handleGetHeadaches(data) {
   };
 }
 
-function handleAddHeadache(data) {
-  return {
-    type: ADD_HEADACHE,
-    data
-  };
-}
-
-function handleRemoveHeadache(id) {
-  return {
-    type: REMOVE_HEADACHE,
-    id
-  };
-}
-
 export function getAllHeadaches() {
   return dispatch => {
     return fetch("http://localhost:3026/api/headaches")

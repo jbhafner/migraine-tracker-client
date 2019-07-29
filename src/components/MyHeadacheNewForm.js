@@ -1,23 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Router, browserHistory } from "react-router";
 import { withRouter } from "react-router-dom";
-import {
-  loadHeadaches,
-  removeHeadaches,
-  addHeadache,
-  postNewHeadache
-} from "../store/actions/headaches.js";
-import { withStyles } from "@material-ui/core/styles";
-import { DateFormatInput, TimeFormatInput } from "material-ui-next-pickers";
+import { postNewHeadache } from "../store/actions/headaches.js";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
 import "./MyHeadacheNewForm.css";
-import { format, parse } from "date-fns";
 
 // console.log("postNewHeadache", postNewHeadache);
 
@@ -25,18 +13,6 @@ const buttonStyle = {
   margin: "5px",
   color: "blue"
 };
-
-const styles = theme => ({
-  container: {
-    display: "flex",
-    flexWrap: "wrap"
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200
-  }
-});
 
 const pain = [
   {
@@ -81,7 +57,11 @@ const pain = [
   }
 ];
 
-pain.map(function(item) {
+// pain.map(function(item) {
+//   console.log("pain item", item);
+// });
+
+pain.forEach(function(item) {
   console.log("pain item", item);
 });
 
@@ -89,7 +69,6 @@ pain.map(function(item) {
 class NewHeadacheForm extends Component<{}, NewHeadacheForm> {
   constructor(props) {
     super(props);
-    const { authUser } = this.props;
     this.state = {
       date: "",
       painLevel: 0,
@@ -97,32 +76,21 @@ class NewHeadacheForm extends Component<{}, NewHeadacheForm> {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleNewHeadache = this.handleNewHeadache.bind(this);
-    // this.onChangeDate = this.onChangeDate.bind(this);
-    // this.postNewHeadache = this.postNewHeadache.bind(this);
   }
 
   handleChange = prop => event => {
     console.log("prop", prop, "event.target.value", event.target.value);
     this.setState({ [prop]: event.target.value });
-    // console.log("this.state", this.state);
   };
-
-  // onChangeDate = (event, date) => {
-  //   console.log("Date:", date);
-  //   this.setState({ selectedDate: date, dateText: format(date, "MM/DD/YYYY") });
-  // };
 
   handleNewHeadache = event => {
     console.log("event", event);
     event.preventDefault();
     console.log("postNewHeadache", postNewHeadache);
     console.log("this.state", { ...this.state });
-    // console.log("this.router.history", this.router.history);
 
     this.props.postNewHeadache({ ...this.state });
     console.log("hello");
-    // this.setState({});
     this.props.history.push("/myHeadaches/list");
   };
   handleSubmit(e) {
@@ -148,17 +116,19 @@ class NewHeadacheForm extends Component<{}, NewHeadacheForm> {
         <div>
           <h1>New Headache Form</h1>
           <TextField
+            required
             className="headacheInput"
             id="date"
             name="date"
             label="Headache Date"
             type="date"
-            defaultValue="2020-01-01"
+            defaultValue="2019-01-01"
             onChange={this.handleChange("date")}
             InputLabelProps={{ shrink: true }}
           />
           <p> </p>
           <TextField
+            required
             id="painLevel"
             className="headacheInput"
             select
@@ -197,10 +167,6 @@ class NewHeadacheForm extends Component<{}, NewHeadacheForm> {
     );
   }
 }
-
-// interface NewHeadacheForm {
-//   date: Date;
-// }
 
 function mapStateToProps(state) {
   return {

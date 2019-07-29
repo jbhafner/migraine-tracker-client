@@ -1,7 +1,4 @@
-import React, { Component } from "react";
-import { Route } from "react-router-dom";
-import { compose } from "redux";
-import { connect } from "react-redux";
+import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -10,7 +7,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import MyHeadacheNewForm from "./MyHeadacheNewForm";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -25,7 +22,7 @@ const styles = theme => ({
 
 console.log("this.props", this.props);
 const MyHeadacheTable = props => {
-  const { id, classes, myHeadaches, removeHeadache, updateMyHeadache } = props;
+  const { classes, myHeadaches, removeHeadache } = props;
 
   console.log("props", props);
 
@@ -37,8 +34,8 @@ const MyHeadacheTable = props => {
             <TableCell numeric>Date</TableCell>
             <TableCell numeric>Pain Level</TableCell>
             <TableCell numeric>Comment</TableCell>
-            <TableCell numeric>Edit</TableCell>
             <TableCell numeric>Delete</TableCell>
+            <TableCell numeric>Edit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -51,18 +48,16 @@ const MyHeadacheTable = props => {
                 <TableCell numeric>
                   <span>
                     <button
-                      onClick={updateMyHeadache.bind(this, n.user._id, n._id)}
+                      onClick={removeHeadache.bind(this, n.user._id, n._id)}
                     >
-                      edit
+                      X
                     </button>
                   </span>
                 </TableCell>
                 <TableCell numeric>
                   <span>
-                    <button
-                      onClick={removeHeadache.bind(this, n.user._id, n._id)}
-                    >
-                      X
+                    <button component={Link} to="/myheadaches/edit">
+                      Edit
                     </button>
                   </span>
                 </TableCell>
@@ -80,4 +75,3 @@ MyHeadacheTable.propTypes = {
 };
 
 export default withStyles(styles)(MyHeadacheTable);
-// export default compose(withStyles(styles))(MyHeadacheTable);

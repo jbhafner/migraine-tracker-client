@@ -1,15 +1,12 @@
 import React, { Component } from "react";
-import { Link, Switch, Route, Redirect, withRouter } from "react-router-dom";
+import { Link, Switch, Route, withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
-import Toolbar from "@material-ui/core/Toolbar";
-import AppBar from "@material-ui/core/AppBar";
-import { Typography } from "@material-ui/core";
 import "./DataView.css";
 import MyHeadacheList from "./MyHeadacheList";
 import MyHeadacheNewForm from "./MyHeadacheNewForm";
-import MyHeadacheTable from "./MyHeadacheTable";
+import About from "./About";
 import { authUser } from "../store/actions/auth";
 import {
   fetchHeadaches,
@@ -50,20 +47,11 @@ class DataView extends Component {
 
   async updateHeadaches(user_id) {
     console.log("updateHeadaches called");
-    let headacheArray = await [];
     console.log("this.props.fetchHeadaches", this.props.fetchHeadaches);
     await this.props.fetchHeadaches();
   }
 
   render() {
-    const { myHeadaches } = this.props;
-    let myHeadacheList = (
-      <MyHeadacheTable
-        myHeadaches={this.props.myHeadaches}
-        removeHeadache={this.props.deleteHeadache}
-      />
-    );
-
     return (
       <div className="HeadacheView">
         <div className="listButtons">
@@ -85,6 +73,14 @@ class DataView extends Component {
             style={style}
           >
             New Headache
+          </Button>
+          <Button
+            component={Link}
+            to="/myHeadaches/about"
+            variant="outlined"
+            style={style}
+          >
+            About
           </Button>
         </div>
 
@@ -109,6 +105,13 @@ class DataView extends Component {
               exact
               path="/myHeadaches/new"
               render={props => <MyHeadacheNewForm onAuth={authUser} />}
+              history={this.props.history}
+            />
+            <Route render={() => <h1>Page not Found</h1>} />
+            <Route
+              exact
+              path="/myHeadaches/about"
+              render={props => <About onAuth={authUser} />}
               history={this.props.history}
             />
             <Route render={() => <h1>Page not Found</h1>} />

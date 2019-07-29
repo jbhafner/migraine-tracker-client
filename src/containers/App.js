@@ -1,16 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import { Provider } from "react-redux";
 import { configureStore } from "../store";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import { setAuthorizationToken, setCurrentUser } from "../store/actions/auth";
 import jwtDecode from "jwt-decode";
-import { connect } from "react-redux";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import purple from "@material-ui/core/colors/purple";
 import Main from "./Main";
 import NAVBar from "../components/NAVBar";
-import { SET_CURRENT_USER } from "../store/actionCreators";
 
 import "./App.css";
 console.log("App.js/ Main", Main);
@@ -41,6 +39,9 @@ const theme = createMuiTheme({
   palette: {
     primary: { main: purple[500] }, // Purple and green play nicely together.
     secondary: { main: "#11cb5f" } // This is just green.A700 as hex.
+  },
+  typography: {
+    useNextVariants: true
   }
 });
 

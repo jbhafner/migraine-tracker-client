@@ -1,7 +1,6 @@
 import { apiCall, setTokenHeader } from "../../services/api";
 import { SET_CURRENT_USER } from "../actionCreators";
 import { addError, removeError } from "./errors";
-import { withRouter } from "react-router-dom";
 export function setCurrentUser(user) {
   return {
     type: SET_CURRENT_USER,
@@ -18,6 +17,8 @@ export function logout() {
     localStorage.clear();
     setAuthorizationToken(false);
     dispatch(setCurrentUser({}));
+
+    console.log("logout complete");
   };
 }
 

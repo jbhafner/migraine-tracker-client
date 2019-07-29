@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import MyHeadacheTable from "./MyHeadacheTable";
-import {
-  fetchHeadaches,
-  removeHeadache,
-  postNewHeadache
-} from "../store/actions/headaches.js";
-import { getAllHeadaches } from "../store/actionCreators.js";
 
 class MyHeadacheList extends Component {
   constructor(props) {
@@ -60,7 +53,7 @@ class MyHeadacheList extends Component {
     let myHeadacheTable = (
       <MyHeadacheTable
         myHeadaches={this.props.myHeadaches}
-        updateMyHeadche={this.props.updateMyHeadche}
+        updateMyHeadache={this.props.updateMyHeadache}
         removeHeadache={this.props.removeHeadache}
         {...this.props}
       />
@@ -75,7 +68,7 @@ class MyHeadacheList extends Component {
 
     return (
       <div className="MyHeadacheList">
-        <h1>MyHeadacheList Component</h1>
+        <h1>My Headache List</h1>
         {myHeadacheTable}
       </div>
     );

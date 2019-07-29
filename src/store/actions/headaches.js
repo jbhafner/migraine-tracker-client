@@ -46,7 +46,6 @@ export const removeHeadache = (user_id, headache_id) => {
       })
       .finally(console.log("removeHeadache finished"));
   };
-  console.log("removeHeadache finished");
 };
 
 export const updateMyHeadache = (user_id, headache_id) => {
