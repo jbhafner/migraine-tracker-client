@@ -48,18 +48,6 @@ export const removeHeadache = (user_id, headache_id) => {
   };
 };
 
-export const updateMyHeadache = (user_id, headache_id) => {
-  console.log("put", `/api/users/${user_id}/headaches/${headache_id}`);
-  return dispatch => {
-    console.log("apiCall", apiCall);
-    return apiCall("put", `/api/users/${user_id}/headaches/${headache_id}`)
-      .then(() => dispatch(updateHeadache(headache_id)))
-      .catch(err => {
-        addError(err.message);
-      });
-  };
-};
-
 export const fetchHeadaches = id => {
   console.log("fetchHeadaches called");
   return dispatch => {
@@ -71,6 +59,32 @@ export const fetchHeadaches = id => {
       .catch(err => {
         console.log("fetchHeadaches / catch called / err", err);
         dispatch(addError(err.message));
+      });
+  };
+};
+
+export const updateMyHeadache = (user_id, headache_id, myState) => {
+  console.log(
+    "updateMyHeadache called - user_id",
+    user_id,
+    "headache_id",
+    headache_id,
+    "apiCall",
+    apiCall
+  );
+  console.log("put", `/api/users/${user_id}/headaches/${headache_id}`, {
+    ...myState
+  });
+  return dispatch => {
+    console.log("apiCall", apiCall);
+    console.log("headaches.js/updateMyHeadache() - headache", headache_id);
+
+    return apiCall("put", `/api/users/${user_id}/headaches/${headache_id}`, {
+      ...myState
+    })
+      .then(() => dispatch(updateHeadache(headache_id)))
+      .catch(err => {
+        addError(err.message);
       });
   };
 };

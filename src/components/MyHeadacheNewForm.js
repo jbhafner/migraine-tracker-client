@@ -9,6 +9,9 @@ import "./MyHeadacheNewForm.css";
 
 // console.log("postNewHeadache", postNewHeadache);
 
+this.state = {
+  today: new Date()
+};
 const buttonStyle = {
   margin: "5px",
   color: "blue"
@@ -122,7 +125,7 @@ class NewHeadacheForm extends Component<{}, NewHeadacheForm> {
             name="date"
             label="Headache Date"
             type="date"
-            defaultValue="2019-01-01"
+            defaultValue={this.state.today}
             onChange={this.handleChange("date")}
             InputLabelProps={{ shrink: true }}
           />

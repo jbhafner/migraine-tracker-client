@@ -10,6 +10,7 @@ import Test from "../components/Test";
 import DataView from "../components/DataView";
 import AuthForm from "../components/AuthForm";
 import About from "../components/About";
+import MyHeadacheUpdateForm from "../components/MyHeadacheUpdateForm";
 
 const paperStyle = {
   height: "85%",
@@ -42,7 +43,11 @@ const Main = props => {
           <Route path="/myHeadaches" render={props => <DataView />} />
           <Route exact path="/test" render={props => <Test />} />
           <Route exact path="/about" render={props => <About />} />
-
+          <Route
+            exact
+            path="/edit"
+            render={props => <MyHeadacheUpdateForm onAuth={authUser} />}
+          />
           <Route
             exact
             path="/signin"

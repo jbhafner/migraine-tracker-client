@@ -1,4 +1,7 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+
 import "./About.css";
 
 const About = () => {
@@ -65,4 +68,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default withRouter(connect()(About));

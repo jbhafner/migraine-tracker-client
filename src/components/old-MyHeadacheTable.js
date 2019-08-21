@@ -7,8 +7,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-// import { Link } from "react-router-dom";
-// import MyHeadacheUpdateForm from "./MyHeadacheUpdateForm";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -26,10 +25,10 @@ const MyHeadacheTable = props => {
   const {
     classes,
     myHeadaches,
-    removeHeadache
-    // updateMyHeadache,
-    // startEditing,
-    // editIdx
+    removeHeadache,
+    updateMyHeadache,
+    startEditing,
+    editIdx
   } = props;
   // const currentlyEditing = editIdx === i;
   console.log("props", props);
@@ -43,29 +42,33 @@ const MyHeadacheTable = props => {
             <TableCell numeric>Pain Level</TableCell>
             <TableCell numeric>Comment</TableCell>
             <TableCell numeric>Delete</TableCell>
+            <TableCell numeric>Edit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {myHeadaches
-            .sort((a, b) => (a.date < b.date ? 0 : -1))
-            .map(n => {
-              return (
-                <TableRow key={n._id}>
-                  <TableCell numeric>{n.date}</TableCell>
-                  <TableCell numeric>{n.painLevel}</TableCell>
-                  <TableCell numeric>{n.comment}</TableCell>
-                  <TableCell numeric>
-                    <span>
-                      <button
-                        onClick={removeHeadache.bind(this, n.user._id, n._id)}
-                      >
-                        X
-                      </button>
-                    </span>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+          {myHeadaches.map(n => {
+            return (
+              <TableRow key={n._id}>
+                <TableCell numeric>{n.date}</TableCell>
+                <TableCell numeric>{n.painLevel}</TableCell>
+                <TableCell numeric>{n.comment}</TableCell>
+                <TableCell numeric>
+                  <span>
+                    <button
+                      onClick={removeHeadache.bind(this, n.user._id, n._id)}
+                    >
+                      X
+                    </button>
+                  </span>
+                </TableCell>
+                <TableCell numeric>
+                  <span>
+                    <button>Edit</button>
+                  </span>
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </Paper>

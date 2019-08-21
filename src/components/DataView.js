@@ -13,6 +13,7 @@ import {
   removeHeadache,
   updateMyHeadache
 } from "../store/actions/headaches.js";
+import MyHeadacheUpdateForm from "./MyHeadacheUpdateForm";
 // import { getAllHeadaches } from "../store/actionCreators.js";
 
 const style = {
@@ -35,6 +36,14 @@ class DataView extends Component {
     this.props.fetchHeadaches(id);
   }
 
+  // componentWillUpdate() {
+  //   let id = this.props.id;
+  //   console.log("id", id);
+  //   console.log("this.props.fetchHeadaches", this.props.fetchHeadaches);
+  //   // this.props.fetchHeadaches(id);
+  //   this.props.fetchHeadaches(id);
+  // }
+
   removeHeadache(id) {
     console.log("removeHeadache called");
     this.props.removeHeadache(id);
@@ -50,6 +59,12 @@ class DataView extends Component {
     console.log("this.props.fetchHeadaches", this.props.fetchHeadaches);
     await this.props.fetchHeadaches();
   }
+
+  startEditing(id) {}
+
+  editIdx(id) {}
+
+  stopEditing(id) {}
 
   render() {
     return (
@@ -107,7 +122,11 @@ class DataView extends Component {
               render={props => <MyHeadacheNewForm onAuth={authUser} />}
               history={this.props.history}
             />
-            <Route render={() => <h1>Page not Found</h1>} />
+            <Route
+              path="/myHeadaches/edit"
+              render={props => <MyHeadacheUpdateForm onAuth={authUser} />}
+              history={this.props.history}
+            />
             <Route
               exact
               path="/myHeadaches/about"

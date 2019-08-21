@@ -1,23 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Router, browserHistory } from "react-router";
+// import { Router, browserHistory } from "react-router";
 import { withRouter } from "react-router-dom";
 import {
-  loadHeadaches,
-  removeHeadaches,
-  addHeadache,
-  postNewHeadache
+  postNewHeadache,
+  updateMyHeadache
 } from "../store/actions/headaches.js";
-import { withStyles } from "@material-ui/core/styles";
-import { DateFormatInput, TimeFormatInput } from "material-ui-next-pickers";
+// import { withStyles } from "@material-ui/core/styles";
+// import { DateFormatInput, TimeFormatInput } from "material-ui-next-pickers";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
+// import InputAdornment from "@material-ui/core/InputAdornment";
+// import Input from "@material-ui/core/Input";
+// import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
 import "./MyHeadacheNewForm.css";
-import { format, parse } from "date-fns";
+// import { format, parse } from "date-fns";
 
 // console.log("postNewHeadache", postNewHeadache);
 
@@ -26,17 +24,17 @@ const buttonStyle = {
   color: "blue"
 };
 
-const styles = theme => ({
-  container: {
-    display: "flex",
-    flexWrap: "wrap"
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200
-  }
-});
+// const styles = theme => ({
+//   container: {
+//     display: "flex",
+//     flexWrap: "wrap"
+//   },
+//   textField: {
+//     marginLeft: theme.spacing.unit,
+//     marginRight: theme.spacing.unit,
+//     width: 200
+//   }
+// });
 
 const pain = [
   {
@@ -81,15 +79,22 @@ const pain = [
   }
 ];
 
-pain.map(function(item) {
-  console.log("pain item", item);
-});
+// pain.map(function(item) {
+//   console.log("pain item", item);
+// });
 
 // let date = {};
 class NewHeadacheForm extends Component<{}, NewHeadacheForm> {
   constructor(props) {
     super(props);
-    const { authUser } = this.props;
+    // const { authUser } = this.props;
+    // const {
+    //   date,
+    //   painLevel,
+    //   comment,
+    //   user_id,
+    //   headache_id
+    // } = this.props.location.state;
     this.state = {
       date: "",
       painLevel: 0,
@@ -100,8 +105,29 @@ class NewHeadacheForm extends Component<{}, NewHeadacheForm> {
     // this.handleNewHeadache = this.handleNewHeadache.bind(this);
     // this.onChangeDate = this.onChangeDate.bind(this);
     // this.postNewHeadache = this.postNewHeadache.bind(this);
+    console.log("props", props);
+    console.log("this.state", this.state);
+    console.log("this.props", this.props);
+    console.log("updateMyHeadache", updateMyHeadache);
   }
 
+  componentDidMount() {
+    const {
+      date,
+      painLevel,
+      comment,
+      user_id,
+      headache_id
+    } = this.props.location.state;
+    console.log(
+      "date,painLevel,comment,user_id, headache_id",
+      date,
+      painLevel,
+      comment,
+      user_id,
+      headache_id
+    );
+  }
   handleChange = prop => event => {
     console.log("prop", prop, "event.target.value", event.target.value);
     this.setState({ [prop]: event.target.value });
@@ -113,21 +139,28 @@ class NewHeadacheForm extends Component<{}, NewHeadacheForm> {
   //   this.setState({ selectedDate: date, dateText: format(date, "MM/DD/YYYY") });
   // };
 
-  handleNewHeadache = event => {
+  handleUpdateHeadache = event => {
+    const {
+      // date,
+      // painLevel,
+      // comment,
+      user_id,
+      headache_id
+    } = this.props.location.state;
+    console.log("user_id", user_id, "headache_id", headache_id);
+    console.log("this.props.location.state", this.props.location.state);
     console.log("event", event);
-    event.preventDefault();
-    console.log("postNewHeadache", postNewHeadache);
+    console.log("handleUpdateHeadach / this.state", this.state);
+    console.log("updateMyHeadache", updateMyHeadache);
     console.log("this.state", { ...this.state });
-    // console.log("this.router.history", this.router.history);
 
-    this.props.postNewHeadache({ ...this.state });
-    console.log("hello");
-    // this.setState({});
+    event.preventDefault();
+    updateMyHeadache(user_id, headache_id, { ...this.state });
     this.props.history.push("/myHeadaches/list");
   };
+
   handleSubmit(e) {
     console.log("AuthForm.js this.props", this.props);
-
     e.preventDefault();
     const authType = this.props.signUp ? "signup" : "signin";
     console.log("MyHeadacheNewForm - authType", authType);
@@ -144,16 +177,16 @@ class NewHeadacheForm extends Component<{}, NewHeadacheForm> {
 
   render() {
     return (
-      <form onSubmit={this.handleNewHeadache}>
+      <form onSubmit={this.handleUpdateHeadache}>
         <div>
-          <h1>New Headache Form</h1>
+          <h1>Update Headache Form</h1>
           <TextField
             className="headacheInput"
             id="date"
             name="date"
             label="Headache Date"
             type="date"
-            defaultValue="2020-01-01"
+            value={this.props.location.state.date}
             onChange={this.handleChange("date")}
             InputLabelProps={{ shrink: true }}
           />
@@ -163,7 +196,7 @@ class NewHeadacheForm extends Component<{}, NewHeadacheForm> {
             className="headacheInput"
             select
             label="Pain Level"
-            value={this.state.painLevel}
+            value={this.props.location.state.painLevel}
             onChange={this.handleChange("painLevel")}
           >
             {pain.map(option => (
@@ -177,7 +210,7 @@ class NewHeadacheForm extends Component<{}, NewHeadacheForm> {
             id="name"
             className="headacheInput"
             label="Comment"
-            value={this.state.comment}
+            value={this.props.location.state.comment}
             onChange={this.handleChange("comment")}
             type="text"
             name="comment"
@@ -190,7 +223,7 @@ class NewHeadacheForm extends Component<{}, NewHeadacheForm> {
             style={buttonStyle}
             type="submit"
           >
-            Submit
+            Update
           </Button>
         </div>
       </form>
@@ -212,6 +245,6 @@ function mapStateToProps(state) {
 export default withRouter(
   connect(
     mapStateToProps,
-    { postNewHeadache }
+    { postNewHeadache, updateMyHeadache }
   )(NewHeadacheForm)
 );
