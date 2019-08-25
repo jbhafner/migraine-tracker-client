@@ -1,9 +1,11 @@
 {
   "name": "migraine-tracker-client",
+  "homepage": "http://brianhafnertech.com/sites/migraineTracker/",
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "8.12.0"
+    "node": "8.12.0",
+    "npm": "6.4.1"
   },
   "dependencies": {
     "@material-ui/core": "^3.9.3",
@@ -21,7 +23,7 @@
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0"
   },
-  "proxy": "http://localhost:3026",
+  "proxy": "https://migraine-server-jbh.herokuapp.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

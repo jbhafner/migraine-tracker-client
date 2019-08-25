@@ -1,3 +1,8 @@
 {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "appService.zipIgnorePattern": [
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/d78e8f20-2192-4e07-9f3b-1c38ab9e0330/resourceGroups/migraineTracker/providers/Microsoft.Web/sites/migraineTracker-jbh",
+    "appService.deploySubpath": ""
 }
