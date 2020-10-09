@@ -8,11 +8,11 @@ https://migraine-tracker-jbh.netlify.com/
 
 More about the app...
 
-Blog Article - <a href="https://brianhafner.info/migraine-tracker-create-frontend/">Migraine Tracker – Create Frontend</a>
+Blog Article - <a href="https://brianhafner.info/migraine-tracker-create-frontend/" target="_blank">Migraine Tracker – Create Frontend</a>
 
-Blog Article - <a href="https://brianhafner.info/migraine-tracker-create-backend/">Migraine Tracker – Create Backend</a>
+Blog Article - <a href="https://brianhafner.info/migraine-tracker-create-backend/" target="_blank">Migraine Tracker – Create Backend</a>
 
-Blog Article - <a href="https://brianhafner.info/migraine-tracker-deploy-backend/">Migraine Tracker – Deploy Backend & Frontend</a>
+Blog Article - <a href="https://brianhafner.info/migraine-tracker-deploy-backend/" target="_blank">Migraine Tracker – Deploy Backend & Frontend</a>
 
 Background:
 ----------------------------------------------------
